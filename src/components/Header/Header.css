@@ -1,0 +1,34 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 32px 0 28px;
+  font-family: Cabinet Grotesk, Arial, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.header__logo {
+}
+
+.header__date-location {
+  margin-left: 24px;
+}
+
+.header__user-container {
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+}
+
+.header__add-clothes-btn {
+  border-style: none;
+  cursor: pointer;
+}
+
+.header__user-name {
+  margin-left: 20px;
+  margin-right: 12px;
+}
+
+.header__user-image {
+}

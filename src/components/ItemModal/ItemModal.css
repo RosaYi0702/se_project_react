@@ -1,0 +1,25 @@
+.modal__content_type_image {
+  width: 498px;
+  padding: 0;
+  border-style: none;
+}
+
+.modal__card_image {
+  width: 498px;
+  height: 498px;
+  border-radius: 16px 16px 0 0;
+}
+
+.modal__footer {
+  padding: 20px 32px;
+}
+
+.modal__card_name {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.modal__card_weather {
+  font-size: 20px;
+  line-height: 24px;
+}
