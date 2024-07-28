@@ -33,6 +33,7 @@ function App() {
     getWeather(coordinates, APIkey)
       .then((data) => {
         const filterData = filterWeatherData(data);
+        console.log(filterData);
         setWeatherData(filterData);
         debugger;
       })
