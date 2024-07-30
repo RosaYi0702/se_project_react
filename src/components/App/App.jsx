@@ -55,6 +55,7 @@ function App() {
           handleAddClick={handleAddClick}
           weatherData={weatherData}
           toggleMobileMenu={toggleMobileMenu}
+          isMobileMenuOpened={isMobileMenuOpened}
         />
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
         <Footer />

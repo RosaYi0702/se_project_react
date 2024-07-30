@@ -19,4 +19,8 @@
     padding: 0;
     gap: 15px;
   }
+
+  .cards__text {
+    margin: 20px 0;
+  }
 }

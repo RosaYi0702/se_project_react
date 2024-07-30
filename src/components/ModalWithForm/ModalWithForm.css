@@ -130,3 +130,14 @@
 .modal__submit:hover:not(:disabled) {
   opacity: 70%;
 }
+
+@media screen and (max-width: 620px) {
+  .modal {
+    align-items: flex-end;
+  }
+
+  .modal__container {
+    border: none;
+    border-radius: 20px 20px 0 0;
+  }
+}

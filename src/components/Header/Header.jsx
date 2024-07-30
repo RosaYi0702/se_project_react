@@ -3,7 +3,12 @@ import logo from "../../assets/logo.png";
 import avatar from "../../assets/avatar.png";
 import menu from "../../assets/menu-icon.png";
 
-function Header({ handleAddClick, weatherData, toggleMobileMenu }) {
+function Header({
+  handleAddClick,
+  weatherData,
+  toggleMobileMenu,
+  isMobileMenuOpened,
+}) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -11,30 +16,36 @@ function Header({ handleAddClick, weatherData, toggleMobileMenu }) {
 
   return (
     <header className="header">
-      <img src={logo} alt="Logo" className="header__logo" />
+      <nav
+        className={`header__nav ${
+          isMobileMenuOpened ? "header__nav_mobile" : ""
+        }`}
+      >
+        <img src={logo} alt="Logo" className="header__logo" />
 
-      <p className="header__date-location">
-        {currentDate}, {weatherData.city}
-      </p>
-      <button className="header__menu" type="button">
-        <img
-          src={menu}
-          alt="menu-icon"
-          className="header__menu_img"
-          onClick={toggleMobileMenu}
-        />
-      </button>
-      <div className="header__user-container">
-        <button
-          type="button"
-          onClick={handleAddClick}
-          className="header__add-clothes-btn"
-        >
-          + Add Clothes
+        <p className="header__date-location">
+          {currentDate}, {weatherData.city}
+        </p>
+        <button className="header__menu" type="button">
+          <img
+            src={menu}
+            alt="menu-icon"
+            className="header__menu_img"
+            onClick={toggleMobileMenu}
+          />
         </button>
-        <p className="header__user-name">Terrence Tegegne</p>
-        <img src={avatar} alt="user-image" className="header__user-image" />
-      </div>
+        <div className="header__user-container">
+          <button
+            type="button"
+            onClick={handleAddClick}
+            className="header__add-clothes-btn"
+          >
+            + Add Clothes
+          </button>
+          <p className="header__user-name">Terrence Tegegne</p>
+          <img src={avatar} alt="user-image" className="header__user-image" />
+        </div>
+      </nav>
     </header>
   );
 }

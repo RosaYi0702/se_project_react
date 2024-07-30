@@ -23,3 +23,18 @@
   font-size: 20px;
   line-height: 24px;
 }
+
+@media screen and (max-width: 620px) {
+  .modal__content_type_image {
+    max-width: 343px;
+  }
+
+  .modal__card_image {
+    max-width: 343px;
+    height: 343px;
+  }
+
+  .modal__footer {
+    padding: 20px 20px;
+  }
+}

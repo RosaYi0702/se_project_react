@@ -21,3 +21,10 @@
   border-radius: 12px;
   overflow: hidden;
 }
+
+@media screen and (max-width: 620px) {
+  .weather-card {
+    margin-top: 16px;
+    margin-bottom: 12px;
+  }
+}
