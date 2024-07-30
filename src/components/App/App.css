@@ -4,6 +4,13 @@
 
 .page__content {
   max-width: 1360px;
+
   margin: 0 auto;
   padding: 0 40px;
+}
+
+@media screen and (max-width: 620px) {
+  .page__content {
+    padding: 16px;
+  }
 }

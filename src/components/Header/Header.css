@@ -32,3 +32,34 @@
 
 .header__user-image {
 }
+
+.header__menu {
+  visibility: hidden;
+  border: none;
+}
+
+@media screen and (max-width: 620px) {
+  .header {
+    padding: 0;
+    display: grid;
+    grid-template-areas: "logo menuIcon" "time time";
+  }
+
+  .header__logo {
+    grid-area: logo;
+  }
+
+  .header__menu {
+    visibility: visible;
+    justify-self: end;
+    grid-area: menuIcon;
+  }
+
+  .header__date-location {
+    margin: 0;
+    grid-area: time;
+  }
+  .header__user-container {
+    visibility: hidden;
+  }
+}

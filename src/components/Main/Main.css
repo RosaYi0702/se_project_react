@@ -13,3 +13,10 @@
   flex-wrap: wrap;
   gap: 20px;
 }
+
+@media screen and (max-width: 620px) {
+  .cards__list {
+    padding: 0;
+    gap: 15px;
+  }
+}

@@ -17,6 +17,7 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+  const [isMobileMenuOpened, setMobileMenuOpened] = useState(false);
 
   const handleCardClick = (selectedCard) => {
     setActiveModal("preview");
@@ -29,6 +30,10 @@ function App() {
 
   const handleCloseClick = () => {
     setActiveModal("");
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpened(true);
   };
 
   useEffect(() => {
@@ -46,7 +51,11 @@ function App() {
   return (
     <div className="page">
       <div className="page__content">
-        <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+        <Header
+          handleAddClick={handleAddClick}
+          weatherData={weatherData}
+          toggleMobileMenu={toggleMobileMenu}
+        />
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
         <Footer />
       </div>

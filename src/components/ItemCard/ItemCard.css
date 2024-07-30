@@ -26,3 +26,17 @@
   border: 1px solid #000;
   cursor: pointer;
 }
+
+@media screen and (max-width: 620px) {
+  .card__name {
+    margin: 0;
+    padding: 2px 0;
+    top: 7px;
+    left: 45px;
+  }
+
+  .card__image {
+    width: 162px;
+    height: 162px;
+  }
+}
