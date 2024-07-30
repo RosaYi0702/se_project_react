@@ -94,20 +94,24 @@
 .modal__label {
 }
 
+.modal__label_type_radio {
+  margin-top: 8px;
+  cursor: pointer;
+  color: #000000;
+  opacity: 50%;
+}
+
 .modal__label_type_radio:first {
   margin-top: 12px;
 }
 
-.modal__label_type_radio {
-  margin-top: 8px;
-  opacity: 50%;
-}
-.modal__label_type_radio:checked {
-  opacity: 100%;
-}
-
 .modal__radio-input {
   cursor: pointer;
+}
+
+.modal__radio-input:checked + .modal__label_type_radio {
+  color: #000000;
+  opacity: 1;
 }
 
 .modal__submit {
