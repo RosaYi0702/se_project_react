@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
+import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
@@ -36,7 +37,6 @@ function App() {
         const filterData = filterWeatherData(data);
         console.log(filterData);
         setWeatherData(filterData);
-        debugger;
       })
       .catch((error) => {
         console.error(error);
@@ -48,7 +48,9 @@ function App() {
       <div className="page__content">
         <Header handleAddClick={handleAddClick} weatherData={weatherData} />
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+        <Footer />
       </div>
+
       <ModalWithForm
         titleText="New garment"
         buttonText="Add garment"
@@ -67,8 +69,9 @@ function App() {
         </label>
         <label htmlFor="imageUrl" className="modal__label">
           Image
+          <span className="modal__error"> (This is not an Email.)</span>
           <input
-            type="text"
+            type="link"
             className="modal__input"
             id="imageUrl"
             placeholder="Image URL"

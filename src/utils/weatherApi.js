@@ -3,10 +3,8 @@ export const getWeather = ({ latitude, longitude }, APIkey) => {
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
   ).then((res) => {
     if (res.ok) {
-      console.log("pass");
       return res.json();
     } else {
-      console.log("not pass");
       return Promise.reject(`Error: ${res.status}`);
     }
   });
