@@ -1,9 +1,9 @@
 import "./ItemModal.css";
 import white_close from "../../assets/white_close.png";
 
-function ItemModal({ activeModal, selectedCard, handleCloseClick }) {
+function ItemModal({ isOpened, selectedCard, handleCloseClick }) {
   return (
-    <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
+    <div className={`modal ${isOpened && "modal_opened"}`}>
       <div className="modal__container modal__content_type_image">
         <button className="modal__close" type="button">
           <img

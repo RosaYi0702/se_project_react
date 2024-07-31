@@ -18,6 +18,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [isMobileMenuOpened, setMobileMenuOpened] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
 
   const handleCardClick = (selectedCard) => {
     setActiveModal("preview");
@@ -33,7 +34,11 @@ function App() {
   };
 
   const toggleMobileMenu = () => {
-    setMobileMenuOpened(true);
+    setMobileMenuOpened((prev = !prev));
+  };
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
   };
 
   useEffect(() => {
@@ -43,9 +48,7 @@ function App() {
         console.log(filterData);
         setWeatherData(filterData);
       })
-      .catch((error) => {
-        console.error(error);
-      });
+      .catch(console.error);
   }, []);
 
   return (
@@ -64,7 +67,7 @@ function App() {
       <ModalWithForm
         titleText="New garment"
         buttonText="Add garment"
-        activeModal={activeModal}
+        isOpened={activeModal === "add-garment"}
         handleCloseClick={handleCloseClick}
       >
         {" "}
@@ -90,27 +93,48 @@ function App() {
         <fieldset className="modal__radio-buttons">
           <legend className="modal__legend">Select the weathe type:</legend>
           <label htmlFor="hot" className="modal__label modal__label_type_radio">
-            <input id="hot" type="radio" className="modal__radio-input" />
+            <input
+              id="hot"
+              type="radio"
+              className="modal__radio-input"
+              value="1"
+              checked={selectedOption === "1"}
+              onChange={handleOptionChange}
+            />
             Hot
           </label>
           <label
             htmlFor="warm"
             className="modal__label modal__label_type_radio"
           >
-            <input id="warm" type="radio" className="modal__radio-input" />
+            <input
+              id="warm"
+              type="radio"
+              className="modal__radio-input"
+              value="2"
+              checked={selectedOption === "2"}
+              onChange={handleOptionChange}
+            />
             Warm
           </label>
           <label
             htmlFor="cold"
             className="modal__label modal__label_type_radio"
           >
-            <input id="cold" type="radio" className="modal__radio-input" />
+            <input
+              id="cold"
+              type="radio"
+              className="modal__radio-input"
+              value="3"
+              checked={selectedOption === "3"}
+              onChange={handleOptionChange}
+            />
             Cold
           </label>
         </fieldset>
       </ModalWithForm>
       <ItemModal
-        activeModal={activeModal}
+        isOpened={activeModal === "preview"}
         selectedCard={selectedCard}
         handleCloseClick={handleCloseClick}
       />
