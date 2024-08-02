@@ -63,20 +63,29 @@
     margin: 0;
     grid-area: time;
   }
+
   .header__user-container {
     display: none;
   }
 
+  .header__nav_mobile .header__date-location {
+    display: none;
+  }
+
+  .header__nav_mobile .header__logo {
+    display: none;
+  }
+
   .header__nav_mobile .header__user-container {
-    display: grid;
     width: 100%;
     height: 208px;
+    overflow: visible;
+    border-radius: 1px;
+    display: grid;
     background-color: #ffffff;
     grid-template-areas:
-      "name avatar"
-      "addClothes addClothes";
-
-    overflow: visible;
+      "name avatar close"
+      "addClothes addClothes addClothes ";
   }
 
   .header__nav_mobile .header__add-clothes-btn {
@@ -89,5 +98,16 @@
 
   .header__user-name .header__user-image {
     grid-area: avatar;
+  }
+
+  .header__nav_mobile .header__menu_close {
+    width: 21px;
+    height: 21px;
+    padding: 0;
+    border: none;
+    grid-area: close;
+  }
+
+  .header__menu_close_img {
   }
 }

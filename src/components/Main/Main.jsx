@@ -3,10 +3,11 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
 
-function Main({ weatherData, handleCardClick }) {
+function Main({ weatherData, handleCardClick, isMobileMenuOpened }) {
   return (
     <main>
-      <WeatherCard weatherData={weatherData} />
+      {isMobileMenuOpened ? <></> : <WeatherCard weatherData={weatherData} />}
+
       <section className="cards">
         <p className="cards__text">
           Today is {weatherData.temp.F}° F / You may want to wear:

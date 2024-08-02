@@ -34,7 +34,7 @@ function App() {
   };
 
   const toggleMobileMenu = () => {
-    setMobileMenuOpened((prev = !prev));
+    setMobileMenuOpened((prev) => !prev);
   };
 
   const handleOptionChange = (event) => {
@@ -59,8 +59,13 @@ function App() {
           weatherData={weatherData}
           toggleMobileMenu={toggleMobileMenu}
           isMobileMenuOpened={isMobileMenuOpened}
+          handleCloseClick={handleCloseClick}
         />
-        <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+        <Main
+          weatherData={weatherData}
+          handleCardClick={handleCardClick}
+          isMobileMenuOpened={isMobileMenuOpened}
+        />
         <Footer />
       </div>
 
