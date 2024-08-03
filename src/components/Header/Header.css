@@ -84,8 +84,8 @@
     display: grid;
     background-color: #ffffff;
     grid-template-areas:
-      "name avatar close"
-      "addClothes addClothes addClothes ";
+      "name avatar "
+      "addClothes addClothes ";
   }
 
   .header__nav_mobile .header__add-clothes-btn {
@@ -101,11 +101,13 @@
   }
 
   .header__nav_mobile .header__menu_close {
+    position: absolute;
     width: 21px;
     height: 21px;
     padding: 0;
     border: none;
-    grid-area: close;
+    top: 11px;
+    right: 12px;
   }
 
   .header__menu_close_img {
