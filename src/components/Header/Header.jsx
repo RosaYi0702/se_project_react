@@ -3,6 +3,8 @@ import logo from "../../assets/logo.png";
 import avatar from "../../assets/avatar.png";
 import menu from "../../assets/menu-icon.png";
 import close from "../../assets/close.svg";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import { Link } from "react-router-dom";
 
 function Header({
   handleAddClick,
@@ -22,7 +24,9 @@ function Header({
           isMobileMenuOpened ? "header__nav_mobile" : ""
         }`}
       >
-        <img src={logo} alt="Logo" className="header__logo" />
+        <Link to="/">
+          <img src={logo} alt="Logo" className="header__logo" />
+        </Link>
 
         <p className="header__date-location">
           {currentDate}, {weatherData.city}
@@ -48,6 +52,7 @@ function Header({
         )}
 
         <div className="header__user-container">
+          <ToggleSwitch />
           <button
             type="button"
             onClick={handleAddClick}
@@ -55,8 +60,11 @@ function Header({
           >
             + Add Clothes
           </button>
-          <p className="header__user-name">Terrence Tegegne</p>
-          <img src={avatar} alt="user-image" className="header__user-image" />
+
+          <Link className="header__link" to="/profile">
+            <p className="header__user-name">Terrence Tegegne</p>
+            <img src={avatar} alt="user-image" className="header__user-image" />
+          </Link>
         </div>
       </nav>
     </header>

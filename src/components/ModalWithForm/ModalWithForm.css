@@ -21,8 +21,11 @@
 
 .modal__container {
   background-color: #ffffff;
-  padding: 28px;
   border-radius: 20px;
+}
+
+.modal__content_type_form {
+  padding: 28px;
   border: #000000 solid 1px;
   width: 496px;
   position: relative;

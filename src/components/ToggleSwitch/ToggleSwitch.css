@@ -1,0 +1,52 @@
+.switch {
+  display: flex;
+  position: relative;
+  margin: 0 20px;
+}
+
+.switch__box {
+  border-radius: 20px;
+  border: #7e7e7e 2px solid;
+  width: 56px;
+  height: 28px;
+  appearance: none;
+}
+
+.switch__box:hover {
+  border: #000 2px solid;
+}
+
+.switch__slider {
+  border-radius: 20px;
+  width: 28px;
+  height: 28px;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+}
+
+.switch__slider_F {
+}
+
+.switch__slider_C {
+  right: 0;
+}
+
+.switch__F {
+  position: absolute;
+  color: #7e7e7e;
+  top: -16px;
+  left: 8px;
+}
+
+.switch__C {
+  position: absolute;
+  color: #7e7e7e;
+  top: -17px;
+  right: 7px;
+}
+
+.switch__active {
+  color: #fff;
+}

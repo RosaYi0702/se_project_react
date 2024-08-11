@@ -1,0 +1,23 @@
+.clothes-section {
+  font-family: Cabinet Grotesk, Arial, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.clothes-section__title {
+  display: flex;
+}
+
+.clothes-section__your-items {
+}
+
+.clothes-section__add-new {
+  border: none;
+}
+
+.clothes-section__clothing-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 20px;
+}

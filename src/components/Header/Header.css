@@ -34,6 +34,12 @@
   margin-right: 12px;
 }
 
+.header__link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+}
 .header__user-image {
 }
 
@@ -68,6 +74,10 @@
     display: none;
   }
 
+  .header__nav_mobile {
+    display: block;
+  }
+
   .header__nav_mobile .header__date-location {
     display: none;
   }
@@ -96,6 +106,9 @@
 
   .header__nav_mobile .header__user-name {
     grid-area: name;
+    margin: 0 12px;
+    display: flex;
+    justify-content: end;
   }
 
   .header__user-name .header__user-image {
@@ -108,8 +121,9 @@
     height: 21px;
     padding: 0;
     border: none;
-    top: 11px;
-    right: 12px;
+    top: 29px;
+    right: 27px;
+    background: transparent;
   }
 
   .header__menu_close_img {

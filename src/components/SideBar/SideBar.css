@@ -1,0 +1,16 @@
+.sidebar {
+  display: flex;
+  width: 300px;
+}
+
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+}
+
+.sidebar__name {
+  font-family: Cabinet Grotesk, Arial, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  margin: 15px 16px;
+}

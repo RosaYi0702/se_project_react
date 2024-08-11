@@ -1,4 +1,5 @@
 import "./ItemModal.css";
+
 import white_close from "../../assets/white_close.png";
 
 function ItemModal({ isOpened, selectedCard, handleCloseClick }) {

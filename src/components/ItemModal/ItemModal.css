@@ -2,12 +2,23 @@
   width: 498px;
   padding: 0;
   border-style: none;
+  position: relative;
 }
 
 .modal__card_image {
   width: 498px;
   height: 498px;
   border-radius: 16px 16px 0 0;
+}
+
+.modal__close {
+  padding: 0;
+  background-color: transparent;
+  border-style: none;
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  cursor: pointer;
 }
 
 .modal__footer {
