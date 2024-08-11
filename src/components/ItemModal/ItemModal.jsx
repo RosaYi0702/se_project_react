@@ -1,8 +1,16 @@
 import "./ItemModal.css";
-
+import { useState } from "react";
+import React from "react";
+import DeleteModal from "../DeleteModal/DeleteModal";
 import white_close from "../../assets/white_close.png";
 
-function ItemModal({ isOpened, selectedCard, handleCloseClick }) {
+function ItemModal({
+  isOpened,
+  selectedCard,
+  handleCloseClick,
+  deleteModal,
+  handleDeleteClick,
+}) {
   return (
     <div className={`modal ${isOpened && "modal_opened"}`}>
       <div className="modal__container modal__content_type_image">
@@ -20,10 +28,24 @@ function ItemModal({ isOpened, selectedCard, handleCloseClick }) {
           className="modal__card_image"
         />
         <div className="modal__footer">
-          <h2 className="modal__card_name">{selectedCard.name}</h2>
-          <p className="modal__card_weather">Weather: {selectedCard.weather}</p>
+          <div className="modal__footer_info">
+            <h2 className="modal__card_name">{selectedCard.name}</h2>
+            <p className="modal__card_weather">
+              Weather: {selectedCard.weather}
+            </p>
+          </div>
+          <div className="modal__footer_delete">
+            <button
+              type="button"
+              className="modal__card_delete"
+              handleDeleteClick={handleDeleteClick}
+            >
+              Delete Item
+            </button>
+          </div>
         </div>
       </div>
+      <DeleteModal isOpened={deleteModal === "delete"} />
     </div>
   );
 }

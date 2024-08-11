@@ -13,7 +13,7 @@ import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../context/CurrentTemperatureUnitContext";
-import AddItemModel from "../AddItemModel/AddItemModel";
+import AddItemModal from "../AddItemModal/AddItemModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -28,6 +28,7 @@ function App() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [deleteModal, setDeleteModal] = useState("");
 
   const handleCardClick = (selectedCard) => {
     setActiveModal("preview");
@@ -70,6 +71,10 @@ function App() {
     setClothingItems([newClothingItem, ...clothingItems]);
     console.log(clothingItems);
     setActiveModal("");
+  };
+
+  const handleDeleteClick = () => {
+    setDeleteModal("delete");
   };
 
   useEffect(() => {
@@ -121,7 +126,7 @@ function App() {
           <Footer />
         </div>
 
-        <AddItemModel
+        <AddItemModal
           isOpened={activeModal === "add-garment"}
           handleCloseClick={handleCloseClick}
           handleOptionChange={handleOptionChange}
@@ -133,6 +138,8 @@ function App() {
           isOpened={activeModal === "preview"}
           selectedCard={selectedCard}
           handleCloseClick={handleCloseClick}
+          deleteModal={deleteModal}
+          handleDeleteClick={handleDeleteClick}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
