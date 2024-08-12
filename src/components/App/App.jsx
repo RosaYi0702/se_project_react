@@ -73,8 +73,18 @@ function App() {
     setActiveModal("");
   };
 
-  const handleDeleteClick = () => {
+  const handleDeleteItem = (id) => {
+    //setClothingItems(clothingItems.filter((item) => item._id !== id));
+    setDeleteModal("");
+    setActiveModal("");
+  };
+
+  const openDeleteModal = () => {
     setDeleteModal("delete");
+  };
+
+  const handleDeleteClose = () => {
+    setDeleteModal("");
   };
 
   useEffect(() => {
@@ -139,7 +149,9 @@ function App() {
           selectedCard={selectedCard}
           handleCloseClick={handleCloseClick}
           deleteModal={deleteModal}
-          handleDeleteClick={handleDeleteClick}
+          openDeleteModal={openDeleteModal}
+          handleDeleteClose={handleDeleteClose}
+          handleDeleteItem={handleDeleteItem}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

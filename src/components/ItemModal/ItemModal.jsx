@@ -9,7 +9,9 @@ function ItemModal({
   selectedCard,
   handleCloseClick,
   deleteModal,
-  handleDeleteClick,
+  openDeleteModal,
+  handleDeleteClose,
+  handleDeleteItem,
 }) {
   return (
     <div className={`modal ${isOpened && "modal_opened"}`}>
@@ -38,14 +40,19 @@ function ItemModal({
             <button
               type="button"
               className="modal__card_delete"
-              handleDeleteClick={handleDeleteClick}
+              onClick={openDeleteModal}
             >
               Delete Item
             </button>
           </div>
         </div>
       </div>
-      <DeleteModal isOpened={deleteModal === "delete"} />
+      <DeleteModal
+        item={selectedCard._id}
+        isOpened={deleteModal === "delete"}
+        handleCloseClick={handleDeleteClose}
+        handleDeleteItem={handleDeleteItem}
+      />
     </div>
   );
 }
