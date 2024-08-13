@@ -1,7 +1,7 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
 
-export default function AddItemModel({
+export default function AddItemModal({
   isOpened,
   handleCloseClick,
   handleOptionChange,
