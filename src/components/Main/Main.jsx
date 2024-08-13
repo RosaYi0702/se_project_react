@@ -11,6 +11,7 @@ function Main({
   clothingItems,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+
   return (
     <main>
       {isMobileMenuOpened ? <></> : <WeatherCard weatherData={weatherData} />}

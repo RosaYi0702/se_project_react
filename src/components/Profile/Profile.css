@@ -2,8 +2,14 @@
   display: flex;
 }
 
-.profile__sideba {
+.profile__sidebar {
 }
 
 .profile__clothing-items {
+}
+
+@media screen and (max-width: 620px) {
+  .profile {
+    flex-direction: column;
+  }
 }

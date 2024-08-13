@@ -4,7 +4,7 @@ import avatar from "../../assets/avatar.png";
 import menu from "../../assets/menu-icon.png";
 import close from "../../assets/close.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Header({
   handleAddClick,
@@ -17,18 +17,31 @@ function Header({
     day: "numeric",
   });
 
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
   return (
     <header className="header">
       <nav
         className={`header__nav ${
-          isMobileMenuOpened ? "header__nav_mobile" : ""
+          isMobileMenuOpened
+            ? "header__nav_mobile"
+            : isHomePage
+            ? "header__nav"
+            : "header__nav_profile"
         }`}
       >
         <Link to="/">
           <img src={logo} alt="Logo" className="header__logo" />
         </Link>
 
-        <p className="header__date-location">
+        <p
+          className={`header__date-location ${
+            isHomePage
+              ? "header__date-location_home"
+              : "header__date-location_profile"
+          }`}
+        >
           {currentDate}, {weatherData.city}
         </p>
         {isMobileMenuOpened ? (

@@ -58,6 +58,13 @@
     grid-template-areas: "logo menuIcon" "time time";
   }
 
+  .header__nav_profile {
+    padding: 0;
+    display: grid;
+    grid-template-areas: "logo time menuIcon";
+    align-items: center;
+  }
+
   .header__logo {
     grid-area: logo;
   }
@@ -68,9 +75,16 @@
     grid-area: menuIcon;
   }
 
-  .header__date-location {
+  .header__date-location_home {
     margin: 0;
     grid-area: time;
+  }
+
+  .header__date-location_profile {
+    grid-area: time;
+    font-size: 16px;
+    line-height: 20px;
+    margin: 10px 50px 10px 12px;
   }
 
   .header__user-container {

@@ -22,3 +22,9 @@
   list-style: none;
   gap: 20px;
 }
+
+@media screen and (max-width: 620px) {
+  .clothes-section__title {
+    justify-content: space-between;
+  }
+}
