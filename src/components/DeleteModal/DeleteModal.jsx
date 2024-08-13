@@ -7,9 +7,10 @@ export default function DeleteModal({
   handleCloseClick,
   handleDeleteItem,
 }) {
-  const deleteCard = (item) => {
+  const deleteCard = () => {
     handleDeleteItem(item);
   };
+
   return (
     <div className={`modal ${isOpened && "modal_opened"}`}>
       <div className="modal__container modal__content_type_delete">
@@ -26,7 +27,7 @@ export default function DeleteModal({
           <br /> This action is irreversible.
         </p>
 
-        <button type="submit" className="modal__confirm" onClick={deleteCard()}>
+        <button type="submit" className="modal__confirm" onClick={deleteCard}>
           Yes, delete item
         </button>
         <button type="button" className="modal__cancel">

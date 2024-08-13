@@ -13,6 +13,7 @@
 
 .clothes-section__add-new {
   border: none;
+  cursor: pointer;
 }
 
 .clothes-section__clothing-list {

@@ -14,6 +14,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../context/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import { getItems, postItem, deleteItem } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -64,19 +65,33 @@ function App() {
     e.preventDefault();
 
     const newClothingItem = {
-      ...formData,
+      name: formData.name,
+      imageUrl: formData.imageUrl,
       weather: selectedOption,
-      _id: Math.random(),
     };
-    setClothingItems([newClothingItem, ...clothingItems]);
+
+    postItem(newClothingItem)
+      .then((data) => {
+        setClothingItems([data, ...clothingItems]);
+      })
+      .catch((err) => console.error("Failed to post item:", err));
+
     console.log(clothingItems);
     setActiveModal("");
   };
 
-  const handleDeleteItem = (id) => {
-    //setClothingItems(clothingItems.filter((item) => item._id !== id));
-    setDeleteModal("");
-    setActiveModal("");
+  const handleDeleteItem = (item) => {
+    console.log("Item to delete:", item);
+    deleteItem(item)
+      .then(() => {
+        setClothingItems(
+          clothingItems.filter((clothingItem) => clothingItem._id !== item._id)
+        );
+        console.log(clothingItems);
+        setDeleteModal("");
+        setActiveModal("");
+      })
+      .catch(console.error);
   };
 
   const openDeleteModal = () => {
@@ -93,6 +108,15 @@ function App() {
         const filterData = filterWeatherData(data);
 
         setWeatherData(filterData);
+      })
+      .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        console.log(data);
+        setClothingItems(data);
       })
       .catch(console.error);
   }, []);
@@ -128,6 +152,7 @@ function App() {
                 <Profile
                   clothingItems={clothingItems}
                   handleCardClick={handleCardClick}
+                  handleAddClick={handleAddClick}
                 />
               }
             ></Route>

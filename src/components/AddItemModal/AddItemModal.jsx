@@ -25,7 +25,7 @@ export default function AddItemModel({
       isOpened={isOpened}
       handleCloseClick={handleCloseClick}
       handleSubmit={(e) => {
-        handleAddItem(e, { name, link, weatherType: selectedOption });
+        handleAddItem(e, { name, imageUrl: link, weatherType: selectedOption });
       }}
       handleOptionChange={handleOptionChange}
     >

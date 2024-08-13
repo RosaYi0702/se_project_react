@@ -25,7 +25,7 @@ function ItemModal({
           />
         </button>
         <img
-          src={selectedCard.link}
+          src={selectedCard.imageUrl}
           alt={selectedCard.name}
           className="modal__card_image"
         />
@@ -48,7 +48,7 @@ function ItemModal({
         </div>
       </div>
       <DeleteModal
-        item={selectedCard._id}
+        item={selectedCard}
         isOpened={deleteModal === "delete"}
         handleCloseClick={handleDeleteClose}
         handleDeleteItem={handleDeleteItem}

@@ -2,7 +2,11 @@ import "./Profile.css";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import SideBar from "../SideBar/SideBar";
 
-export default function Profile({ clothingItems, handleCardClick }) {
+export default function Profile({
+  clothingItems,
+  handleCardClick,
+  handleAddClick,
+}) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
@@ -12,6 +16,7 @@ export default function Profile({ clothingItems, handleCardClick }) {
         <ClothesSection
           clothingItems={clothingItems}
           handleCardClick={handleCardClick}
+          handleAddClick={handleAddClick}
         />
       </section>
     </div>
