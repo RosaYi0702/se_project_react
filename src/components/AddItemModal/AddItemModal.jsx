@@ -1,4 +1,4 @@
-import ModalWithForm from "./ModalWithForm/ModalWithForm";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
 
 export default function AddItemModel({
