@@ -13,7 +13,7 @@ import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../utils/CurrentTemperatureUnitContext";
-import AddItemModal from "../AddItemModal/AddItemModal";
+import AddItemModal from "../AddItemModal";
 import { getItems, postItem, deleteItem } from "../../utils/api";
 
 function App() {
