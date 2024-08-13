@@ -10,6 +10,7 @@
   width: 56px;
   height: 28px;
   appearance: none;
+  transition: 0.3s ease all;
 }
 
 .switch__box:hover {
@@ -49,4 +50,10 @@
 
 .switch__active {
   color: #fff;
+}
+
+.switch__slider_C:before,
+.switch__slider_F:before,
+.switch__slider {
+  transition: 0.3s ease all;
 }
