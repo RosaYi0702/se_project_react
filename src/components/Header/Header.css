@@ -48,6 +48,9 @@
   border: none;
 }
 
+.header__toggle-switch {
+}
+
 @media screen and (max-width: 620px) {
   .header__nav {
     padding: 0;
@@ -95,7 +98,8 @@
     background-color: #ffffff;
     grid-template-areas:
       "name avatar "
-      "addClothes addClothes ";
+      "addClothes addClothes "
+      "switch switch";
     margin: 0;
     box-shadow: 0 2px #0000001a;
   }
@@ -108,13 +112,18 @@
     grid-area: name;
     margin: 0 12px;
     display: flex;
-    justify-content: end;
   }
-
-  .header__user-name .header__user-image {
+  .header__nav_mobile .header__link {
+    justify-self: center;
+  }
+  .header__nav_mobile .header__user-image {
     grid-area: avatar;
   }
 
+  .header__nav_mobile .header__toggle-switch {
+    grid-area: switch;
+    justify-self: center;
+  }
   .header__nav_mobile .header__menu_close {
     position: absolute;
     width: 21px;

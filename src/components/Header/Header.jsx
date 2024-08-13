@@ -52,7 +52,10 @@ function Header({
         )}
 
         <div className="header__user-container">
-          <ToggleSwitch />
+          <div className="header__toggle-switch">
+            <ToggleSwitch />
+          </div>
+
           <button
             type="button"
             onClick={handleAddClick}

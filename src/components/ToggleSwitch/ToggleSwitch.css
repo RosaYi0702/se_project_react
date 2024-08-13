@@ -30,7 +30,7 @@
 }
 
 .switch__slider_C {
-  right: 0;
+  left: 28px;
 }
 
 .switch__F {
@@ -44,7 +44,7 @@
   position: absolute;
   color: #7e7e7e;
   top: -17px;
-  right: 7px;
+  left: 35px;
 }
 
 .switch__active {
