@@ -52,6 +52,7 @@ function ItemModal({
         isOpened={deleteModal === "delete"}
         handleCloseClick={handleDeleteClose}
         handleDeleteItem={handleDeleteItem}
+        handleDeleteClose={handleDeleteClose}
       />
     </div>
   );

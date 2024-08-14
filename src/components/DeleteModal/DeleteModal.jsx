@@ -6,6 +6,7 @@ export default function DeleteModal({
   isOpened,
   handleCloseClick,
   handleDeleteItem,
+  handleDeleteClose,
 }) {
   const deleteCard = () => {
     handleDeleteItem(item);
@@ -30,7 +31,11 @@ export default function DeleteModal({
         <button type="submit" className="modal__confirm" onClick={deleteCard}>
           Yes, delete item
         </button>
-        <button type="button" className="modal__cancel">
+        <button
+          type="button"
+          className="modal__cancel"
+          onClick={handleDeleteClose}
+        >
           Cancel
         </button>
       </div>

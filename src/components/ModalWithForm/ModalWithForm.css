@@ -21,7 +21,6 @@
 
 .modal__container {
   background-color: #ffffff;
-  border-radius: 20px;
 }
 
 .modal__content_type_form {
@@ -29,6 +28,7 @@
   border: #000000 solid 1px;
   width: 496px;
   position: relative;
+  border-radius: 20px;
 }
 
 .modal__close {
@@ -141,6 +141,9 @@
 
   .modal__container {
     border: none;
+  }
+
+  .modal__content_type_form {
     border-radius: 20px 20px 0 0;
   }
 }
