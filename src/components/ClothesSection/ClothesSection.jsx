@@ -4,7 +4,7 @@ import ItemCard from "../ItemCard/ItemCard";
 export default function ClothesSection({
   clothingItems,
   handleCardClick,
-  handleAddClick,
+  handleAddGarmentModal,
 }) {
   return (
     <div className="clothes-section">
@@ -13,7 +13,7 @@ export default function ClothesSection({
         <button
           className="clothes-section__add-new"
           type="button"
-          onClick={handleAddClick}
+          onClick={handleAddGarmentModal}
         >
           + Add new
         </button>

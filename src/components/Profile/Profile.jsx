@@ -5,7 +5,7 @@ import SideBar from "../SideBar/SideBar";
 export default function Profile({
   clothingItems,
   handleCardClick,
-  handleAddClick,
+  handleAddGarmentModal,
 }) {
   return (
     <div className="profile">
@@ -16,7 +16,7 @@ export default function Profile({
         <ClothesSection
           clothingItems={clothingItems}
           handleCardClick={handleCardClick}
-          handleAddClick={handleAddClick}
+          handleAddGarmentModal={handleAddGarmentModal}
         />
       </section>
     </div>

@@ -36,11 +36,11 @@ function App() {
     setSelectedCard(selectedCard);
   };
 
-  const handleAddClick = () => {
+  const handleAddGarmentModal = () => {
     setActiveModal("add-garment");
   };
 
-  const handleCloseClick = () => {
+  const handleCloseModal = () => {
     setActiveModal("");
   };
 
@@ -73,11 +73,9 @@ function App() {
     postItem(newClothingItem)
       .then((data) => {
         setClothingItems([data, ...clothingItems]);
+        handleCloseModal();
       })
       .catch((err) => console.error("Failed to post item:", err));
-
-    console.log(clothingItems);
-    handleCloseClick();
   };
 
   const handleDeleteItem = (item) => {
@@ -89,7 +87,7 @@ function App() {
         );
         console.log(clothingItems);
         handleDeleteClose();
-        handleCloseClick();
+        handleCloseModal();
       })
       .catch(console.error);
   };
@@ -142,11 +140,11 @@ function App() {
       >
         <div className="page__content">
           <Header
-            handleAddClick={handleAddClick}
+            handleAddGarmentModal={handleAddGarmentModal}
             weatherData={weatherData}
             toggleMobileMenu={toggleMobileMenu}
             isMobileMenuOpened={isMobileMenuOpened}
-            handleCloseClick={handleCloseClick}
+            handleCloseModal={handleCloseModal}
           />
           <Routes>
             <Route
@@ -166,7 +164,7 @@ function App() {
                 <Profile
                   clothingItems={clothingItems}
                   handleCardClick={handleCardClick}
-                  handleAddClick={handleAddClick}
+                  handleAddGarmentModal={handleAddGarmentModal}
                 />
               }
             ></Route>
@@ -177,7 +175,7 @@ function App() {
 
         <AddItemModal
           isOpened={activeModal === "add-garment"}
-          handleCloseClick={handleCloseClick}
+          handleCloseModal={handleCloseModal}
           handleOptionChange={handleOptionChange}
           handleAddItem={handleAddItem}
           selectedOption={selectedOption}
@@ -186,7 +184,7 @@ function App() {
         <ItemModal
           isOpened={activeModal === "preview"}
           selectedCard={selectedCard}
-          handleCloseClick={handleCloseClick}
+          handleCloseModal={handleCloseModal}
           deleteModal={deleteModal}
           openDeleteModal={openDeleteModal}
           handleDeleteClose={handleDeleteClose}

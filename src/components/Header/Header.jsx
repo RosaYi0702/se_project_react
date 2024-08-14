@@ -7,7 +7,7 @@ import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link, useLocation } from "react-router-dom";
 
 function Header({
-  handleAddClick,
+  handleAddGarmentModal,
   weatherData,
   toggleMobileMenu,
   isMobileMenuOpened,
@@ -71,7 +71,7 @@ function Header({
 
           <button
             type="button"
-            onClick={handleAddClick}
+            onClick={handleAddGarmentModal}
             className="header__add-clothes-btn"
           >
             + Add Clothes
