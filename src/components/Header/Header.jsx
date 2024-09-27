@@ -8,9 +8,13 @@ import { Link, useLocation } from "react-router-dom";
 
 function Header({
   handleAddGarmentModal,
+  handleRegisterModal,
+  handleLogInModal,
   weatherData,
   toggleMobileMenu,
   isMobileMenuOpened,
+  handleCloseModal,
+  isLoggedIn,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -68,19 +72,44 @@ function Header({
           <div className="header__toggle-switch">
             <ToggleSwitch />
           </div>
+          {isLoggedIn ? (
+            <>
+              <button
+                type="button"
+                onClick={handleAddGarmentModal}
+                className="header__add-clothes-btn"
+              >
+                + Add Clothes
+              </button>
 
-          <button
-            type="button"
-            onClick={handleAddGarmentModal}
-            className="header__add-clothes-btn"
-          >
-            + Add Clothes
-          </button>
+              <Link className="header__link" to="/profile">
+                <p className="header__user-name">Terrence Tegegne</p>
+                <img
+                  src={avatar}
+                  alt="user-image"
+                  className="header__user-image"
+                />
+              </Link>
+            </>
+          ) : (
+            <>
+              <button
+                type="button"
+                onClick={handleRegisterModal}
+                className="header__sign-up-btn"
+              >
+                Sign Up
+              </button>
 
-          <Link className="header__link" to="/profile">
-            <p className="header__user-name">Terrence Tegegne</p>
-            <img src={avatar} alt="user-image" className="header__user-image" />
-          </Link>
+              <button
+                type="button"
+                onClick={handleLogInModal}
+                className="header__log-in-btn"
+              >
+                Log in
+              </button>
+            </>
+          )}
         </div>
       </nav>
     </header>

@@ -7,7 +7,7 @@ import white_close from "../../assets/white_close.png";
 function ItemModal({
   isOpened,
   selectedCard,
-  handleCloseClick,
+  handleCloseModal,
   deleteModal,
   openDeleteModal,
   handleDeleteClose,
@@ -21,7 +21,7 @@ function ItemModal({
             src={white_close}
             alt="close-button"
             className="modal__close-image"
-            onClick={handleCloseClick}
+            onClick={handleCloseModal}
           />
         </button>
         <img
@@ -50,7 +50,7 @@ function ItemModal({
       <DeleteModal
         item={selectedCard}
         isOpened={deleteModal === "delete"}
-        handleCloseClick={handleDeleteClose}
+        handleCloseModal={handleCloseModal}
         handleDeleteItem={handleDeleteItem}
         handleDeleteClose={handleDeleteClose}
       />

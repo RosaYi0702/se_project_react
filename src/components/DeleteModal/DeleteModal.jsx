@@ -4,7 +4,7 @@ import close from "../../assets/close.svg";
 export default function DeleteModal({
   item,
   isOpened,
-  handleCloseClick,
+  handleCloseModal,
   handleDeleteItem,
   handleDeleteClose,
 }) {
@@ -20,7 +20,7 @@ export default function DeleteModal({
             src={close}
             alt="close-button"
             className="modal__close-image"
-            onClick={handleCloseClick}
+            onClick={handleCloseModal}
           />
         </button>
         <p className="modal__delete_question">

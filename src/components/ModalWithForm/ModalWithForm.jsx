@@ -5,7 +5,8 @@ function ModalWithForm({
   children,
   titleText,
   buttonText,
-  handleCloseClick,
+  buttonSecondText,
+  handleCloseModal,
   isOpened,
   handleSubmit,
 }) {
@@ -17,16 +18,21 @@ function ModalWithForm({
             src={close}
             alt="close-button"
             className="modal__close-image"
-            onClick={handleCloseClick}
+            onClick={handleCloseModal}
           />
         </button>
 
         <h2 className="modal__title">{titleText}</h2>
         <form onSubmit={handleSubmit} className="modal__form">
           {children}
-          <button type="submit" className="modal__submit">
-            {buttonText}
-          </button>
+          <div className="modal__submit-buttons">
+            <button type="submit" className="modal__submit">
+              {buttonText}
+            </button>
+            <button type="submit" className="modal__submit_or">
+              {buttonSecondText}
+            </button>
+          </div>
         </form>
       </div>
     </div>

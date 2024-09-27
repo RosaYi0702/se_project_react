@@ -29,6 +29,18 @@
   background-color: transparent;
 }
 
+.header__sign-up-btn {
+  border-style: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.header__log-in-btn {
+  border-style: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
 .header__user-name {
   margin-left: 20px;
   margin-right: 12px;

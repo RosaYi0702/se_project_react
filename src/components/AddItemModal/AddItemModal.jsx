@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function AddItemModal({
   isOpened,
-  handleCloseClick,
+  handleCloseModal,
   handleOptionChange,
   handleAddItem,
   selectedOption,
@@ -23,7 +23,7 @@ export default function AddItemModal({
       titleText="New garment"
       buttonText="Add garment"
       isOpened={isOpened}
-      handleCloseClick={handleCloseClick}
+      handleCloseModal={handleCloseModal}
       handleSubmit={(e) => {
         handleAddItem(e, { name, imageUrl: link, weatherType: selectedOption });
       }}

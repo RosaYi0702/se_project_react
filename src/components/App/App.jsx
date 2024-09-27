@@ -1,11 +1,12 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import {
   coordinates,
   APIkey,
   defaultClothingItems,
 } from "../../utils/constants";
-import { Routes, Route } from "react-router-dom";
+
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -13,8 +14,13 @@ import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, postItem, deleteItem } from "../../utils/api";
+import AddItemModal from "../AddItemModal/AddItemModal";
+import LoginModal from "../LoginModal/LoginModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import { signup, signin, getUserInfo } from "../../utils/auth";
+import { setToken, getToken, removeToken } from "../../utils/token";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -30,6 +36,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [deleteModal, setDeleteModal] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleCardClick = (selectedCard) => {
     setActiveModal("preview");
@@ -38,6 +45,14 @@ function App() {
 
   const handleAddGarmentModal = () => {
     setActiveModal("add-garment");
+  };
+
+  const handleLogInModal = () => {
+    setActiveModal("log-in");
+  };
+
+  const handleRegisterModal = () => {
+    setActiveModal("register");
   };
 
   const handleCloseModal = () => {
@@ -63,6 +78,7 @@ function App() {
 
   const handleAddItem = (e, formData) => {
     e.preventDefault();
+    const token = getToken();
 
     const newClothingItem = {
       name: formData.name,
@@ -70,7 +86,7 @@ function App() {
       weather: selectedOption,
     };
 
-    postItem(newClothingItem)
+    postItem(newClothingItem, token)
       .then((data) => {
         setClothingItems([data, ...clothingItems]);
         handleCloseModal();
@@ -79,17 +95,44 @@ function App() {
   };
 
   const handleDeleteItem = (item) => {
+    const token = getToken();
     console.log("Item to delete:", item);
-    deleteItem(item)
+    deleteItem(item._id, token)
       .then(() => {
         setClothingItems(
           clothingItems.filter((clothingItem) => clothingItem._id !== item._id)
         );
-        console.log(clothingItems);
         handleDeleteClose();
         handleCloseModal();
       })
       .catch(console.error);
+  };
+
+  const handleRegister = (formData) => {
+    signup(formData)
+      .then((data) => {
+        setIsLoggedIn(true);
+        handleCloseModal();
+        console.log("registeration succeddful:", data);
+      })
+      .catch((err) => {
+        console.error("registration fail:", err);
+      });
+  };
+
+  const handleLogIn = (formData) => {
+    if (!formData.email || !formData.password) {
+      return;
+    }
+    signin(formData)
+      .then((data) => {
+        setIsLoggedIn(true);
+        handleCloseModal();
+        setToken(data.token);
+      })
+      .catch((err) => {
+        console.error("Log in fail:", err);
+      });
   };
 
   const openDeleteModal = () => {
@@ -111,12 +154,17 @@ function App() {
   }, []);
 
   useEffect(() => {
-    getItems()
+    const token = getToken();
+
+    getItems(token)
       .then((data) => {
-        console.log(data);
-        setClothingItems(data);
+        console.log(data.items);
+        setClothingItems(data.Items);
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Failed to fetch items:", err);
+        setClothingItems([]);
+      });
   }, []);
 
   useEffect(() => {
@@ -133,6 +181,21 @@ function App() {
     };
   }, [activeModal]);
 
+  useEffect(() => {
+    const token = setToken();
+    if (token) {
+      getUserInfo(token)
+        .then((userData) => {
+          setIsLoggedIn(true);
+          console.log("User data retrieved:", userData);
+        })
+        .catch((err) => {
+          console.error("Failed to fetch user info:", err);
+          removeToken();
+        });
+    }
+  });
+
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
@@ -141,10 +204,13 @@ function App() {
         <div className="page__content">
           <Header
             handleAddGarmentModal={handleAddGarmentModal}
+            handleRegisterModal={handleRegisterModal}
+            handleLogInModal={handleLogInModal}
             weatherData={weatherData}
             toggleMobileMenu={toggleMobileMenu}
             isMobileMenuOpened={isMobileMenuOpened}
             handleCloseModal={handleCloseModal}
+            isLoggedIn={isLoggedIn}
           />
           <Routes>
             <Route
@@ -161,18 +227,19 @@ function App() {
             <Route
               path="/profile"
               element={
-                <Profile
-                  clothingItems={clothingItems}
-                  handleCardClick={handleCardClick}
-                  handleAddGarmentModal={handleAddGarmentModal}
-                />
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <Profile
+                    clothingItems={clothingItems}
+                    handleCardClick={handleCardClick}
+                    handleAddGarmentModal={handleAddGarmentModal}
+                  />
+                </ProtectedRoute>
               }
             ></Route>
           </Routes>
 
           <Footer />
         </div>
-
         <AddItemModal
           isOpened={activeModal === "add-garment"}
           handleCloseModal={handleCloseModal}
@@ -180,7 +247,6 @@ function App() {
           handleAddItem={handleAddItem}
           selectedOption={selectedOption}
         />
-
         <ItemModal
           isOpened={activeModal === "preview"}
           selectedCard={selectedCard}
@@ -189,6 +255,16 @@ function App() {
           openDeleteModal={openDeleteModal}
           handleDeleteClose={handleDeleteClose}
           handleDeleteItem={handleDeleteItem}
+        />
+        <LoginModal
+          isOpened={activeModal === "log-in"}
+          handleCloseModal={handleCloseModal}
+          handleLogIn={handleLogIn}
+        />
+        <RegisterModal
+          isOpened={activeModal === "register"}
+          handleRegister={handleRegister}
+          handleCloseModal={handleCloseModal}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
