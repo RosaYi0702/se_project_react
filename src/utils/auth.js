@@ -29,7 +29,8 @@ export function signin({ email, password }) {
         return Promise.reject(`Error:${res.status}`);
       }
       return res.json().then((data) => {
-        localStorgar.setItem("jwt", data.token);
+        localStorage.setItem("jwt", data.token);
+        console.log(data);
         return data;
       });
     })

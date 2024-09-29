@@ -55,6 +55,9 @@
 .header__user-image {
 }
 
+.header__user-image-placeholder {
+}
+
 .header__menu {
   visibility: hidden;
   border: none;

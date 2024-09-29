@@ -9,7 +9,7 @@ export function request(url, options) {
 }
 
 export function getItems(token) {
-  return request(`${baseUrl}/items`, {
+  return fetch(`${baseUrl}/items`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -25,7 +25,7 @@ export function getItems(token) {
 }
 
 export function postItem(formData, token) {
-  return request(`${baseUrl}/items`, {
+  return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export function postItem(formData, token) {
 }
 
 export function deleteItem(item, token) {
-  return request(`${baseUrl}/items/${item._id}`, {
+  return fetch(`${baseUrl}/items/${item._id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

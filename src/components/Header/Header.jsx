@@ -15,6 +15,7 @@ function Header({
   isMobileMenuOpened,
   handleCloseModal,
   isLoggedIn,
+  userName,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -23,6 +24,7 @@ function Header({
 
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const userInitial = userName ? userName.charAt(0).toUpperCase() : "";
 
   return (
     <header className="header">
@@ -83,12 +85,18 @@ function Header({
               </button>
 
               <Link className="header__link" to="/profile">
-                <p className="header__user-name">Terrence Tegegne</p>
-                <img
-                  src={avatar}
-                  alt="user-image"
-                  className="header__user-image"
-                />
+                <p className="header__user-name">{userName}</p>
+                {avatar ? (
+                  <img
+                    src={avatar}
+                    alt="user-image"
+                    className="header__user-image"
+                  />
+                ) : (
+                  <div className="header__user-image-placeholder">
+                    {userInitial}
+                  </div>
+                )}
               </Link>
             </>
           ) : (
