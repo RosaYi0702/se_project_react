@@ -1,6 +1,5 @@
 import "./Header.css";
 import logo from "../../assets/logo.png";
-import avatar from "../../assets/avatar.png";
 import menu from "../../assets/menu-icon.png";
 import close from "../../assets/close.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
@@ -13,9 +12,9 @@ function Header({
   weatherData,
   toggleMobileMenu,
   isMobileMenuOpened,
-  handleCloseModal,
   isLoggedIn,
   userName,
+  userAvatar,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -88,7 +87,7 @@ function Header({
                 <p className="header__user-name">{userName}</p>
                 {avatar ? (
                   <img
-                    src={avatar}
+                    src={userAvatar}
                     alt="user-image"
                     className="header__user-image"
                   />

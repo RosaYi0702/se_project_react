@@ -5,7 +5,12 @@ export default function ClothesSection({
   clothingItems,
   handleCardClick,
   handleAddGarmentModal,
+  currentUserId,
 }) {
+  const userClothingItems = clothingItems.filter(
+    (item) => item.owner === currentUserId
+  );
+
   return (
     <div className="clothes-section">
       <div className="clothes-section__title">
@@ -19,15 +24,17 @@ export default function ClothesSection({
         </button>
       </div>
       <div className="clothes-section__clothing-list">
-        {clothingItems.map((item) => {
-          return (
+        {userClothingItems.length === 0 ? (
+          <p>No items to display.</p>
+        ) : (
+          userClothingItems.map((item) => (
             <ItemCard
               key={item._id}
               item={item}
               handleCardClick={handleCardClick}
             />
-          );
-        })}
+          ))
+        )}
       </div>
     </div>
   );

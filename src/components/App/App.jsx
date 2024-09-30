@@ -22,6 +22,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { signup, signin, getUserInfo } from "../../utils/auth";
 import { setToken, getToken, removeToken } from "../../utils/token";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -30,7 +31,7 @@ function App() {
     city: "",
     isDay: true,
   });
-  const [activeModal, setActiveModal] = useState("");
+  const [activeModal, setActiveModal] = useState("update-profile");
   const [selectedCard, setSelectedCard] = useState({});
   const [isMobileMenuOpened, setMobileMenuOpened] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -59,6 +60,10 @@ function App() {
 
   const handleCloseModal = () => {
     setActiveModal("");
+  };
+
+  const handleUpdateProfileModal = () => {
+    setActiveModal("update-profile");
   };
 
   const toggleMobileMenu = () => {
@@ -110,12 +115,21 @@ function App() {
       .catch(console.error);
   };
 
-  const handleRegister = (formData) => {
-    signup(formData)
+  const handleUpdateProfile = (formData) => {};
+
+  const handleRegister = ({ name, avatar, email, password }) => {
+    signup(name, avatar, email, password)
       .then((data) => {
         setIsLoggedIn(true);
-        handleCloseModal();
         console.log("registration successful:", data);
+        setToken(data.token);
+        return getUserInfo(data.token);
+      })
+      .then((userData) => {
+        if (userData && userData.name) {
+          setCurrentUser({ name: userData.name });
+        }
+        handleCloseModal();
       })
       .catch((err) => {
         console.error("registration fail:", err);
@@ -132,6 +146,7 @@ function App() {
         console.log(data);
         setIsLoggedIn(true);
         setToken(data.token);
+        console.log("Token set:", token);
         return getUserInfo(data.token);
       })
       .then((userData) => {
@@ -153,6 +168,9 @@ function App() {
     setDeleteModal("");
   };
 
+  useEffect(() => {
+    console.log("App re-rendering. Current activeModal:", activeModal);
+  });
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -191,7 +209,8 @@ function App() {
   }, [activeModal]);
 
   useEffect(() => {
-    const token = setToken();
+    const token = getToken();
+
     if (token) {
       getUserInfo(token)
         .then((userData) => {
@@ -204,7 +223,7 @@ function App() {
           removeToken();
         });
     }
-  });
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
@@ -223,6 +242,7 @@ function App() {
               handleCloseModal={handleCloseModal}
               isLoggedIn={isLoggedIn}
               userName={currentUser?.name}
+              userAvatar={currentUser?.avatar}
             />
             <Routes>
               <Route
@@ -244,6 +264,12 @@ function App() {
                       clothingItems={clothingItems}
                       handleCardClick={handleCardClick}
                       handleAddGarmentModal={handleAddGarmentModal}
+                      currentUserId={currentUser?._id}
+                      userName={currentUser?.name}
+                      userAvatar={currentUser?.avatar}
+                      handleUpdateProfile={handleUpdateProfile}
+                      handleUpdateProfileModal={handleUpdateProfileModal}
+                      handleCloseModal={handleCloseModal}
                     />
                   </ProtectedRoute>
                 }
@@ -267,16 +293,19 @@ function App() {
             openDeleteModal={openDeleteModal}
             handleDeleteClose={handleDeleteClose}
             handleDeleteItem={handleDeleteItem}
+            currentUser={currentUser}
           />
           <LoginModal
             isOpened={activeModal === "log-in"}
             handleCloseModal={handleCloseModal}
             handleLogIn={handleLogIn}
+            handleRegisterModal={handleRegisterModal}
           />
           <RegisterModal
             isOpened={activeModal === "register"}
             handleRegister={handleRegister}
             handleCloseModal={handleCloseModal}
+            handleLogInModal={handleLogInModal}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>

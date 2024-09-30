@@ -12,7 +12,19 @@ function ItemModal({
   openDeleteModal,
   handleDeleteClose,
   handleDeleteItem,
+  currentUser,
 }) {
+  const isOwn = selectedCard.owner === currentUser?._id;
+
+  const itemDeleteButtonClassName = `modal__footer_delete ${
+    isOwn ? "modal__footer_delete_visible" : "modal__footer_delete_hidden"
+  }`;
+
+  if (!isOpened) {
+    return null;
+  }
+
+  console.log(selectedCard);
   return (
     <div className={`modal ${isOpened && "modal_opened"}`}>
       <div className="modal__container modal__content_type_image">
@@ -36,7 +48,7 @@ function ItemModal({
               Weather: {selectedCard.weather}
             </p>
           </div>
-          <div className="modal__footer_delete">
+          <div className={itemDeleteButtonClassName}>
             <button
               type="button"
               className="modal__card_delete"

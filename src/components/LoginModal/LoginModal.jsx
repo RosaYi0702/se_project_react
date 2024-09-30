@@ -5,6 +5,7 @@ export default function LoginModal({
   isOpened,
   handleLogIn,
   handleCloseModal,
+  handleRegisterModal,
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,6 +32,7 @@ export default function LoginModal({
       isOpened={isOpened}
       handleCloseModal={handleCloseModal}
       handleSubmit={handleSubmit}
+      handleSwitchModal={handleRegisterModal}
     >
       <label htmlFor="email" className="modal__label">
         Email

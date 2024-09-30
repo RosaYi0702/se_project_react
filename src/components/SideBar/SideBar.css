@@ -4,11 +4,23 @@
   font-family: Cabinet Grotesk, Arial, sans-serif;
   font-size: 20px;
   line-height: 24px;
+  flex-direction: column;
+}
+
+.sidebar__user {
+  display: flex;
+  margin: 20px 0;
+}
+
+.sidebar__setting {
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar__avatar {
   width: 56px;
   height: 56px;
+  border-radius: 50%;
 }
 
 .sidebar__name {
@@ -18,7 +30,12 @@
 
 .sidebar__change-profile,
 .sidebar__log-out {
-  display: none;
+  margin: 4px 0;
+  text-align: start;
+  border: none;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 620px) {

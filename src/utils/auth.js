@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000/";
+const BASE_URL = "http://localhost:3001";
 
 export function signup(name, avatar, email, password) {
   return fetch(`${BASE_URL}/signup`, {
@@ -7,13 +7,16 @@ export function signup(name, avatar, email, password) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  })
-    .then((res) => {
-      return res.ok ? res.json() : Promise.reject(`ERROR: ${res.status}`);
-    })
-    .catch((error) => {
-      console.error("Error during signup:", error);
-    });
+  }).then((res) => {
+    if (!res.ok) {
+      return res.json().then((errorData) => {
+        return Promise.reject(
+          new Error(errorData.message || `ERROR: ${res.status}`)
+        );
+      });
+    }
+    return res.json();
+  });
 }
 
 export function signin({ email, password }) {
