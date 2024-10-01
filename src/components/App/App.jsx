@@ -14,15 +14,20 @@ import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import { getItems, postItem, deleteItem } from "../../utils/api";
+import {
+  getItems,
+  postItem,
+  deleteItem,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import { signup, signin, getUserInfo } from "../../utils/auth";
+import { signup, signin, getUserInfo, updateUser } from "../../utils/auth";
 import { setToken, getToken, removeToken } from "../../utils/token";
-import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -31,7 +36,7 @@ function App() {
     city: "",
     isDay: true,
   });
-  const [activeModal, setActiveModal] = useState("update-profile");
+  const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [isMobileMenuOpened, setMobileMenuOpened] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -115,7 +120,15 @@ function App() {
       .catch(console.error);
   };
 
-  const handleUpdateProfile = (formData) => {};
+  const handleUpdateProfile = (formData) => {
+    const token = getToken();
+
+    updateUser(token, formData)
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser);
+      })
+      .catch(console.error);
+  };
 
   const handleRegister = ({ name, avatar, email, password }) => {
     signup(name, avatar, email, password)
@@ -166,6 +179,25 @@ function App() {
 
   const handleDeleteClose = () => {
     setDeleteModal("");
+  };
+
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = getToken("jwt");
+    !isLiked
+      ? addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch(console.error)
+      : removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch(console.error);
   };
 
   useEffect(() => {
@@ -253,6 +285,7 @@ function App() {
                     handleCardClick={handleCardClick}
                     isMobileMenuOpened={isMobileMenuOpened}
                     clothingItems={clothingItems}
+                    handleCardLike={handleCardLike}
                   />
                 }
               ></Route>
@@ -270,6 +303,7 @@ function App() {
                       handleUpdateProfile={handleUpdateProfile}
                       handleUpdateProfileModal={handleUpdateProfileModal}
                       handleCloseModal={handleCloseModal}
+                      activeModal={activeModal}
                     />
                   </ProtectedRoute>
                 }

@@ -58,3 +58,19 @@ export function getUserInfo(token) {
       console.error("Error during get User Info:", error);
     });
 }
+
+export const updateUser = (token, formData) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  }).then((res) => {
+    if (!res.ok) {
+      return Promise.reject(`Error:${res.status}`);
+    }
+    return res.json();
+  });
+};

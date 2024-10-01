@@ -12,8 +12,8 @@ export default function SideBar({
   handleUpdateProfile,
   handleUpdateProfileModal,
   handleCloseModal,
+  activeModal,
 }) {
-  const [activeModal, setActiveModal] = useState("update-profile");
   const navigate = useNavigate();
   const { setIsLoggedIn } = useContext(CurrentUserContext);
 
@@ -49,6 +49,8 @@ export default function SideBar({
         userAvatar={userAvatar}
         userName={userName}
         handleCloseModal={handleCloseModal}
+        activeModal={activeModal}
+        handleUpdateProfile={handleUpdateProfile}
       />
     </div>
   );

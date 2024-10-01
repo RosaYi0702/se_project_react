@@ -12,6 +12,7 @@ export default function Profile({
   handleUpdateProfile,
   handleUpdateProfileModal,
   handleCloseModal,
+  activeModal,
 }) {
   return (
     <div className="profile">
@@ -22,6 +23,7 @@ export default function Profile({
           handleUpdateProfile={handleUpdateProfile}
           handleUpdateProfileModal={handleUpdateProfileModal}
           handleCloseModal={handleCloseModal}
+          activeModal={activeModal}
         />
       </section>
       <section className="profile__clothing-items">

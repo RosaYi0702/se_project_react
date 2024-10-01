@@ -60,3 +60,27 @@ export function deleteItem(item, token) {
       console.error(`ERROR during fetching items: ${err}`);
     });
 }
+
+export function addCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`ERROR: ${res.status}`);
+  });
+}
+
+export function removeCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((res) =>
+    res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
+  );
+}

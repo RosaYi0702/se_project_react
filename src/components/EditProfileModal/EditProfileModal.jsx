@@ -6,17 +6,17 @@ export default function EditProfileModal({
   handleCloseModal,
   userAvatar,
   userName,
+  handleUpdateProfile,
 }) {
-  console.log("isOpened in EditProfileModal:", isOpened);
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
 
   useEffect(() => {
     if (isOpened) {
-      setName(userName);
-      setAvatar(userAvatar);
+      setName(userName || "");
+      setAvatar(userAvatar || "");
     }
-  });
+  }, [isOpened, userName, userAvatar]);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -29,6 +29,9 @@ export default function EditProfileModal({
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = { name, avatar };
+
+    handleUpdateProfile(formData);
+    handleCloseModal();
   };
 
   return (

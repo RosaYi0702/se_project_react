@@ -2,6 +2,9 @@
   position: relative;
 }
 
+.card__title {
+}
+
 .card__name {
   background-color: #fff;
   font-family: Cabinet Grotesk, Arial, sans-serif;
@@ -15,8 +18,16 @@
   border-radius: 4px;
   position: absolute;
   top: 15px;
-  left: 125px;
+  left: 111px;
   cursor: default;
+  margin: 0;
+}
+
+.card__like {
+  position: absolute;
+  top: 20px;
+  right: 111px;
+  cursor: pointer;
 }
 
 .card__image {
