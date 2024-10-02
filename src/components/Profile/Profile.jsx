@@ -13,6 +13,7 @@ export default function Profile({
   handleUpdateProfileModal,
   handleCloseModal,
   activeModal,
+  handleCardLike,
 }) {
   return (
     <div className="profile">
@@ -32,6 +33,7 @@ export default function Profile({
           handleCardClick={handleCardClick}
           handleAddGarmentModal={handleAddGarmentModal}
           currentUserId={currentUserId}
+          handleCardLike={handleCardLike}
         />
       </section>
     </div>

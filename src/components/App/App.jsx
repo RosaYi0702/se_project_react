@@ -182,22 +182,26 @@ function App() {
   };
 
   const handleCardLike = ({ id, isLiked }) => {
-    const token = getToken("jwt");
-    !isLiked
-      ? addCardLike(id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
-            );
-          })
-          .catch(console.error)
-      : removeCardLike(id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
-            );
-          })
-          .catch(console.error);
+    const token = getToken();
+    if (!isLiked) {
+      addCardLike(id, token)
+        .then((updatedCard) => {
+          console.log("Liked:", updatedCard);
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard.item : item))
+          );
+        })
+        .catch(console.error);
+    } else {
+      removeCardLike(id, token)
+        .then((updatedCard) => {
+          console.log("Unliked:", updatedCard);
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard.item : item))
+          );
+        })
+        .catch(console.error);
+    }
   };
 
   useEffect(() => {
@@ -286,6 +290,7 @@ function App() {
                     isMobileMenuOpened={isMobileMenuOpened}
                     clothingItems={clothingItems}
                     handleCardLike={handleCardLike}
+                    currentUser={CurrentUserContext}
                   />
                 }
               ></Route>
@@ -304,6 +309,7 @@ function App() {
                       handleUpdateProfileModal={handleUpdateProfileModal}
                       handleCloseModal={handleCloseModal}
                       activeModal={activeModal}
+                      handleCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }

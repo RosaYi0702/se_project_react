@@ -6,6 +6,7 @@ export default function ClothesSection({
   handleCardClick,
   handleAddGarmentModal,
   currentUserId,
+  handleCardLike,
 }) {
   const userClothingItems = clothingItems.filter(
     (item) => item.owner === currentUserId
@@ -32,6 +33,7 @@ export default function ClothesSection({
               key={item._id}
               item={item}
               handleCardClick={handleCardClick}
+              handleCardLike={handleCardLike}
             />
           ))
         )}

@@ -2,19 +2,20 @@ import "./ItemCard.css";
 import like from "../../assets/like.png";
 import liked from "../../assets/liked.png";
 
-function ItemCard({ item, handleCardClick, handleCardLike }) {
+function ItemCard({ item, handleCardClick, handleCardLike, currentUser }) {
   const openPreview = () => {
     handleCardClick(item);
   };
+  const isLiked = item?.likes?.some((userId) => userId === currentUser?._id);
   const handleLike = () => {
-    handleCardLike({ id: item._id, isLiked: item.isLiked });
+    handleCardLike({ id: item._id, isLiked });
   };
 
   return (
     <li className="card">
       <h2 className="card__name">{item.name}</h2>
       <img
-        src={item.isLiked ? liked : like}
+        src={isLiked ? liked : like}
         alt="like"
         className="card__like"
         onClick={handleLike}
