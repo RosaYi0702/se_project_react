@@ -51,7 +51,7 @@ export default function EditProfileModal({
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="editProfileName"
           placeholder="Name"
           value={name}
           onChange={handleNameChange}
@@ -62,7 +62,7 @@ export default function EditProfileModal({
         <input
           type="link"
           className="modal__input"
-          id="avatar"
+          id="editProfileAvatar"
           placeholder="Avatar URL"
           value={avatar}
           onChange={handleAvatarChange}

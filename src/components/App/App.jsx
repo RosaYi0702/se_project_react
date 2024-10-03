@@ -7,6 +7,7 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal";
+import { defaultClothingItems } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import {
@@ -36,7 +37,7 @@ function App() {
   const [isMobileMenuOpened, setMobileMenuOpened] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [clothingItems, setClothingItems] = useState([]);
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [deleteModal, setDeleteModal] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
