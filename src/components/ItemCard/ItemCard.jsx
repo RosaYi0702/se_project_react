@@ -5,7 +5,8 @@ import like from "../../assets/like.png";
 import liked from "../../assets/liked.png";
 
 function ItemCard({ item, handleCardClick, handleCardLike }) {
-  const currentUser = useContext(CurrentUserContext);
+  const { isLoggedIn, setIsLoggedIn, currentUser } =
+    useContext(CurrentUserContext);
   const isLiked = item?.likes?.some((id) => id === currentUser?._id);
 
   const openPreview = () => {

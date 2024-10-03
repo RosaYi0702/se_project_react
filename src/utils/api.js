@@ -15,13 +15,7 @@ export function getItems(token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  })
-    .then((res) => {
-      return res.ok ? res.json() : Promise.reject(`ERROR: ${res.status}`);
-    })
-    .catch((err) => {
-      console.error(`ERROR during fetching items: ${err}`);
-    });
+  }).then(checkResponse);
 }
 
 export function postItem(formData, token) {
@@ -36,13 +30,7 @@ export function postItem(formData, token) {
       imageUrl: formData.imageUrl,
       weather: formData.weather,
     }),
-  })
-    .then((res) => {
-      return res.ok ? res.json() : Promise.reject(`ERROR: ${res.status}`);
-    })
-    .catch((err) => {
-      console.error(`ERROR during fetching items: ${err}`);
-    });
+  }).then(checkResponse);
 }
 
 export function deleteItem(item, token) {
@@ -52,13 +40,7 @@ export function deleteItem(item, token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  })
-    .then((res) => {
-      return res.ok ? res.json() : Promise.reject(`ERROR: ${res.status}`);
-    })
-    .catch((err) => {
-      console.error(`ERROR during fetching items: ${err}`);
-    });
+  }).then(checkResponse);
 }
 
 export function addCardLike(id, token) {
@@ -69,9 +51,7 @@ export function addCardLike(id, token) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ token }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`ERROR: ${res.status}`);
-  });
+  }).then(checkResponse);
 }
 
 export function removeCardLike(id, token) {
@@ -81,7 +61,5 @@ export function removeCardLike(id, token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then((res) =>
-    res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-  );
+  }).then(checkResponse);
 }

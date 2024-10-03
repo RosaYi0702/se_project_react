@@ -9,8 +9,6 @@ export default function Profile({
   handleCardClick,
   handleAddGarmentModal,
 
-  userName,
-  userAvatar,
   handleUpdateProfile,
   handleUpdateProfileModal,
   handleCloseModal,
@@ -21,8 +19,6 @@ export default function Profile({
     <div className="profile">
       <section className="profile__sidebar">
         <SideBar
-          userName={userName}
-          userAvatar={userAvatar}
           handleUpdateProfile={handleUpdateProfile}
           handleUpdateProfileModal={handleUpdateProfileModal}
           handleCloseModal={handleCloseModal}

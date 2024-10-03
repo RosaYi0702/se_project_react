@@ -71,6 +71,7 @@ export const updateUser = (token, formData) => {
     if (!res.ok) {
       return Promise.reject(`Error:${res.status}`);
     }
+    console.log(res.json);
     return res.json();
   });
 };

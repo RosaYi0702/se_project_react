@@ -120,6 +120,7 @@ function App() {
 
     updateUser(token, formData)
       .then((updatedUser) => {
+        console.log("Backend response: ", updatedUser);
         setCurrentUser(updatedUser);
       })
       .catch(console.error);
@@ -154,17 +155,18 @@ function App() {
         console.log(data);
         setIsLoggedIn(true);
         setToken(data.token);
-        console.log("Token set:", token);
+        console.log("Token set:", data.token);
         return getUserInfo(data.token);
       })
       .then((userData) => {
-        if (userData && userData.name) {
-          setCurrentUser({ name: userData.name });
+        if (userData) {
+          setCurrentUser(userData);
         }
         handleCloseModal();
       })
       .catch((err) => {
         console.error("Log in fail:", err);
+        setIsLoggedIn(false);
       });
   };
 
@@ -177,6 +179,7 @@ function App() {
   };
 
   const handleCardLike = ({ id, isLiked }) => {
+    console.log("ID:", id);
     const token = getToken();
 
     if (!isLiked) {
@@ -258,7 +261,9 @@ function App() {
   }, []);
 
   return (
-    <CurrentUserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+    <CurrentUserContext.Provider
+      value={{ isLoggedIn, setIsLoggedIn, currentUser }}
+    >
       <div className="page">
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}

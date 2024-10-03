@@ -8,7 +8,8 @@ export default function EditProfileModal({
 
   handleUpdateProfile,
 }) {
-  const currentUser = useContext(CurrentUserContext);
+  const { isLoggedIn, setIsLoggedIn, currentUser } =
+    useContext(CurrentUserContext);
 
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -31,7 +32,7 @@ export default function EditProfileModal({
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = { name, avatar };
-
+    console.log("Form data: ", { name, avatar });
     handleUpdateProfile(formData);
     handleCloseModal();
   };

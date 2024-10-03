@@ -14,11 +14,9 @@ function Header({
   weatherData,
   toggleMobileMenu,
   isMobileMenuOpened,
-  isLoggedIn,
-  userName,
-  userAvatar,
 }) {
-  const { name, avatar } = useContext(CurrentUserContext);
+  const { isLoggedIn, setIsLoggedIn, currentUser } =
+    useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -26,7 +24,9 @@ function Header({
 
   const location = useLocation();
   const isHomePage = location.pathname === "/";
-  const userInitial = name ? name.charAt(0).toUpperCase() : "";
+  const userInitial = currentUser?.name
+    ? currentUser.name.charAt(0).toUpperCase()
+    : "";
 
   return (
     <header className="header">
@@ -87,10 +87,10 @@ function Header({
               </button>
 
               <Link className="header__link" to="/profile">
-                <p className="header__user-name">{userName}</p>
-                {avatar ? (
+                <p className="header__user-name">{currentUser.name}</p>
+                {currentUser.avatar ? (
                   <img
-                    src={userAvatar}
+                    src={currentUser.avatar}
                     alt="user-image"
                     className="header__user-image"
                   />

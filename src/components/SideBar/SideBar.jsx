@@ -15,7 +15,8 @@ export default function SideBar({
   activeModal,
 }) {
   const navigate = useNavigate();
-  const { setIsLoggedIn } = useContext(CurrentUserContext);
+  const { isLoggedIn, setIsLoggedIn, currentUser } =
+    useContext(CurrentUserContext);
 
   function signOut() {
     removeToken();
@@ -25,9 +26,13 @@ export default function SideBar({
   return (
     <div className="sidebar">
       <div className="sidebar__user">
-        <img src={userAvatar} alt="Avatar" className="sidebar__avatar" />
+        <img
+          src={currentUser.avatar}
+          alt="Avatar"
+          className="sidebar__avatar"
+        />
         <div className="sidebar__menu">
-          <p className="sidebar__name">{userName}</p>
+          <p className="sidebar__name">{currentUser.name}</p>
         </div>
       </div>
       <div className="sidebar__setting">
@@ -46,8 +51,6 @@ export default function SideBar({
       </div>
       <EditProfileModal
         isOpened={activeModal === "update-profile"}
-        userAvatar={userAvatar}
-        userName={userName}
         handleCloseModal={handleCloseModal}
         activeModal={activeModal}
         handleUpdateProfile={handleUpdateProfile}
