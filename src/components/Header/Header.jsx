@@ -1,4 +1,6 @@
 import "./Header.css";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import logo from "../../assets/logo.png";
 import menu from "../../assets/menu-icon.png";
 import close from "../../assets/close.svg";
@@ -16,6 +18,7 @@ function Header({
   userName,
   userAvatar,
 }) {
+  const { name, avatar } = useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -23,7 +26,7 @@ function Header({
 
   const location = useLocation();
   const isHomePage = location.pathname === "/";
-  const userInitial = userName ? userName.charAt(0).toUpperCase() : "";
+  const userInitial = name ? name.charAt(0).toUpperCase() : "";
 
   return (
     <header className="header">

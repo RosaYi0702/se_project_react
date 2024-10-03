@@ -1,22 +1,24 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 export default function EditProfileModal({
   isOpened,
   handleCloseModal,
-  userAvatar,
-  userName,
+
   handleUpdateProfile,
 }) {
+  const currentUser = useContext(CurrentUserContext);
+
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
 
   useEffect(() => {
     if (isOpened) {
-      setName(userName || "");
-      setAvatar(userAvatar || "");
+      setName(currentUser.name || "");
+      setAvatar(currentUser.avatar || "");
     }
-  }, [isOpened, userName, userAvatar]);
+  }, [isOpened, currentUser.name, currentUser.avatar]);
 
   const handleNameChange = (e) => {
     setName(e.target.value);

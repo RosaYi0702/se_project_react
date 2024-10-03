@@ -68,6 +68,7 @@ export function addCardLike(id, token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
+    body: JSON.stringify({ token }),
   }).then((res) => {
     return res.ok ? res.json() : Promise.reject(`ERROR: ${res.status}`);
   });

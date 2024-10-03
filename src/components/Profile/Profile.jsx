@@ -1,4 +1,6 @@
 import "./Profile.css";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import SideBar from "../SideBar/SideBar";
 
@@ -6,7 +8,7 @@ export default function Profile({
   clothingItems,
   handleCardClick,
   handleAddGarmentModal,
-  currentUserId,
+
   userName,
   userAvatar,
   handleUpdateProfile,
@@ -32,7 +34,6 @@ export default function Profile({
           clothingItems={clothingItems}
           handleCardClick={handleCardClick}
           handleAddGarmentModal={handleAddGarmentModal}
-          currentUserId={currentUserId}
           handleCardLike={handleCardLike}
         />
       </section>

@@ -1,15 +1,19 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 export default function ClothesSection({
   clothingItems,
   handleCardClick,
   handleAddGarmentModal,
-  currentUserId,
+
   handleCardLike,
 }) {
+  const currentUser = useContext(CurrentUserContext);
+
   const userClothingItems = clothingItems.filter(
-    (item) => item.owner === currentUserId
+    (item) => item.owner === currentUser._id
   );
 
   return (

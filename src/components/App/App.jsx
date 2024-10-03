@@ -183,6 +183,7 @@ function App() {
 
   const handleCardLike = ({ id, isLiked }) => {
     const token = getToken();
+
     if (!isLiked) {
       addCardLike(id, token)
         .then((updatedCard) => {
@@ -277,8 +278,6 @@ function App() {
               isMobileMenuOpened={isMobileMenuOpened}
               handleCloseModal={handleCloseModal}
               isLoggedIn={isLoggedIn}
-              userName={currentUser?.name}
-              userAvatar={currentUser?.avatar}
             />
             <Routes>
               <Route
@@ -290,7 +289,7 @@ function App() {
                     isMobileMenuOpened={isMobileMenuOpened}
                     clothingItems={clothingItems}
                     handleCardLike={handleCardLike}
-                    currentUser={CurrentUserContext}
+                    setClothingItems={setClothingItems}
                   />
                 }
               ></Route>
@@ -302,9 +301,6 @@ function App() {
                       clothingItems={clothingItems}
                       handleCardClick={handleCardClick}
                       handleAddGarmentModal={handleAddGarmentModal}
-                      currentUserId={currentUser?._id}
-                      userName={currentUser?.name}
-                      userAvatar={currentUser?.avatar}
                       handleUpdateProfile={handleUpdateProfile}
                       handleUpdateProfileModal={handleUpdateProfileModal}
                       handleCloseModal={handleCloseModal}
