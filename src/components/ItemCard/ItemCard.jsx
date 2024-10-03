@@ -14,7 +14,7 @@ function ItemCard({ item, handleCardClick, handleCardLike }) {
 
   const handleLike = (e) => {
     e.preventDefault();
-    console.log("handleLike:", item._id);
+    console.log("handleLike:", item._id, isLiked);
     handleCardLike({ id: item._id, isLiked });
   };
 

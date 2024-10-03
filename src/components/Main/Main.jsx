@@ -10,7 +10,6 @@ function Main({
   isMobileMenuOpened,
   clothingItems,
   handleCardLike,
-
   setClothingItems,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
