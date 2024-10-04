@@ -33,8 +33,8 @@ export function postItem(formData, token) {
   }).then(checkResponse);
 }
 
-export function deleteItem(item, token) {
-  return fetch(`${baseUrl}/items/${item._id}`, {
+export function deleteItem(id, token) {
+  return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

@@ -1,5 +1,6 @@
 import "./ItemModal.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import React from "react";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import white_close from "../../assets/white_close.png";
@@ -12,12 +13,15 @@ function ItemModal({
   openDeleteModal,
   handleDeleteClose,
   handleDeleteItem,
-  currentUser,
 }) {
+  const { isLoggedIn, setIsLoggedIn, currentUser } =
+    useContext(CurrentUserContext);
   const isOwn = selectedCard.owner === currentUser?._id;
 
   const itemDeleteButtonClassName = `modal__footer_delete ${
-    isOwn ? "modal__footer_delete_visible" : "modal__footer_delete_hidden"
+    isOwn && isLoggedIn
+      ? "modal__footer_delete_visible"
+      : "modal__footer_delete_hidden"
   }`;
 
   if (!isOpened) {

@@ -28,7 +28,7 @@ import { setToken, getToken, removeToken } from "../../utils/token";
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "cold",
-    temp: { F: 999 },
+    temp: { F: 70 },
     city: "",
     isDay: true,
   });
@@ -95,8 +95,11 @@ function App() {
     };
 
     postItem(newClothingItem, token)
+      .then(() => {
+        return getItems(token);
+      })
       .then((data) => {
-        setClothingItems([data, ...clothingItems]);
+        setClothingItems(data.items);
         handleCloseModal();
       })
       .catch((err) => console.error("Failed to post item:", err));
