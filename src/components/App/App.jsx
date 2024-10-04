@@ -40,7 +40,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [deleteModal, setDeleteModal] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState([]);
 
   const handleCardClick = (selectedCard) => {
     setActiveModal("preview");
