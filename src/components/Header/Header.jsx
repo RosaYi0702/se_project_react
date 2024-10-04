@@ -25,7 +25,7 @@ function Header({
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const userInitial = currentUser?.name
-    ? currentUser.name.charAt(0).toUpperCase()
+    ? currentUser?.name.charAt(0).toUpperCase()
     : "";
 
   return (
@@ -87,7 +87,7 @@ function Header({
               </button>
 
               <Link className="header__link" to="/profile">
-                <p className="header__user-name">{currentUser.name}</p>
+                <p className="header__user-name">{currentUser?.name}</p>
                 {currentUser.avatar ? (
                   <img
                     src={currentUser.avatar}
