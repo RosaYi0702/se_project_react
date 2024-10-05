@@ -1,3 +1,4 @@
+import { checkResponse } from "./api";
 const BASE_URL = "http://localhost:3001";
 
 export function signup(name, avatar, email, password) {
@@ -7,16 +8,7 @@ export function signup(name, avatar, email, password) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  }).then((res) => {
-    if (!res.ok) {
-      return res.json().then((errorData) => {
-        return Promise.reject(
-          new Error(errorData.message || `ERROR: ${res.status}`)
-        );
-      });
-    }
-    return res.json();
-  });
+  }).then(checkResponse);
 }
 
 export function signin({ email, password }) {
@@ -27,18 +19,11 @@ export function signin({ email, password }) {
     },
     body: JSON.stringify({ email, password }),
   })
-    .then((res) => {
-      if (!res.ok) {
-        return Promise.reject(`Error:${res.status}`);
-      }
-      return res.json().then((data) => {
-        localStorage.setItem("jwt", data.token);
-        console.log(data);
-        return data;
-      });
-    })
-    .catch((error) => {
-      console.error("Error during sign in:", error);
+    .then(checkResponse)
+    .then((data) => {
+      localStorage.setItem("jwt", data.token);
+      console.log(data);
+      return data;
     });
 }
 
@@ -50,13 +35,7 @@ export function getUserInfo(token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  })
-    .then((res) => {
-      return res.ok ? res.json() : Promise.reject(`ERROR: ${res.status}`);
-    })
-    .catch((error) => {
-      console.error("Error during get User Info:", error);
-    });
+  }).then(checkResponse);
 }
 
 export const updateUser = (token, formData) => {
@@ -67,11 +46,5 @@ export const updateUser = (token, formData) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(formData),
-  }).then((res) => {
-    if (!res.ok) {
-      return Promise.reject(`Error:${res.status}`);
-    }
-    console.log(res.json);
-    return res.json();
-  });
+  }).then(checkResponse);
 };

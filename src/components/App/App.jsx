@@ -41,6 +41,7 @@ function App() {
   const [deleteModal, setDeleteModal] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCardClick = (selectedCard) => {
     setActiveModal("preview");
@@ -95,11 +96,10 @@ function App() {
     };
 
     postItem(newClothingItem, token)
-      .then(() => {
-        return getItems(token);
-      })
       .then((data) => {
         setClothingItems(data.items);
+      })
+      .then(() => {
         handleCloseModal();
       })
       .catch((err) => console.error("Failed to post item:", err));
@@ -114,6 +114,8 @@ function App() {
           clothingItems.filter((clothingItem) => clothingItem._id !== item._id)
         );
         handleDeleteClose();
+      })
+      .then(() => {
         handleCloseModal();
       })
       .catch(console.error);
@@ -126,6 +128,9 @@ function App() {
       .then((updatedUser) => {
         console.log("Backend response: ", updatedUser);
         setCurrentUser(updatedUser);
+      })
+      .then(() => {
+        handleCloseModal();
       })
       .catch(console.error);
   };
@@ -142,6 +147,8 @@ function App() {
         if (userData && userData.name) {
           setCurrentUser({ name: userData.name });
         }
+      })
+      .then(() => {
         handleCloseModal();
       })
       .catch((err) => {
@@ -166,6 +173,8 @@ function App() {
         if (userData) {
           setCurrentUser(userData);
         }
+      })
+      .then(() => {
         handleCloseModal();
       })
       .catch((err) => {
@@ -324,6 +333,7 @@ function App() {
             handleOptionChange={handleOptionChange}
             handleAddItem={handleAddItem}
             selectedOption={selectedOption}
+            isLoading={isLoading}
           />
           <ItemModal
             isOpened={activeModal === "preview"}
@@ -333,19 +343,20 @@ function App() {
             openDeleteModal={openDeleteModal}
             handleDeleteClose={handleDeleteClose}
             handleDeleteItem={handleDeleteItem}
-            currentUser={currentUser}
           />
           <LoginModal
             isOpened={activeModal === "log-in"}
             handleCloseModal={handleCloseModal}
             handleLogIn={handleLogIn}
             handleRegisterModal={handleRegisterModal}
+            isLoading={isLoading}
           />
           <RegisterModal
             isOpened={activeModal === "register"}
             handleRegister={handleRegister}
             handleCloseModal={handleCloseModal}
             handleLogInModal={handleLogInModal}
+            isLoading={isLoading}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>

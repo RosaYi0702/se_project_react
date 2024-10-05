@@ -1,5 +1,5 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useState } from "react";
+import { useForm } from "../../hooks/useForm";
 
 export default function AddItemModal({
   isOpened,
@@ -7,17 +7,10 @@ export default function AddItemModal({
   handleOptionChange,
   handleAddItem,
   selectedOption,
+  isLoading,
 }) {
-  const [name, setName] = useState("");
-  const [link, setLink] = useState("");
+  const { values, handleChange } = useForm({ name: "", imageUrl: "" });
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const handleImgUrlChange = (e) => {
-    setLink(e.target.value);
-  };
   return (
     <ModalWithForm
       titleText="New garment"
@@ -25,31 +18,36 @@ export default function AddItemModal({
       isOpened={isOpened}
       handleCloseModal={handleCloseModal}
       handleSubmit={(e) => {
-        handleAddItem(e, { name, imageUrl: link, weatherType: selectedOption });
+        handleAddItem(e, {
+          name: values.name,
+          imageUrl: values.imageUrl,
+          weatherType: selectedOption,
+        });
       }}
       handleOptionChange={handleOptionChange}
+      isLoading={isLoading}
     >
-      <label htmlFor="name" className="modal__label">
+      <label className="modal__label">
         Name
         <input
           type="text"
           className="modal__input"
           id="name"
           placeholder="Name"
-          value={name}
-          onChange={handleNameChange}
+          value={values.name}
+          onChange={handleChange}
         />
       </label>
-      <label htmlFor="imageUrl" className="modal__label">
+      <label className="modal__label">
         Image
         <span className="modal__error"> (This is not an Email.)</span>
         <input
-          type="link"
+          type="url"
           className="modal__input"
           id="imageUrl"
           placeholder="Image URL"
-          value={link}
-          onChange={handleImgUrlChange}
+          value={values.imageUrl}
+          onChange={handleChange}
         />
       </label>
       <fieldset className="modal__radio-buttons">

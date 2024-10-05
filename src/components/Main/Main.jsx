@@ -28,6 +28,7 @@ function Main({
             .filter((item) => {
               return item.weather === weatherData?.type;
             })
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
             .map((item) => {
               return (
                 <ItemCard

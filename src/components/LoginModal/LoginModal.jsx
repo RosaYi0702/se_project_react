@@ -1,28 +1,20 @@
 import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useState } from "react";
+
+import { useForm } from "../../hooks/useForm";
 
 export default function LoginModal({
   isOpened,
   handleLogIn,
   handleCloseModal,
   handleRegisterModal,
+  isLoading,
 }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+  const { values, handleChange } = useForm({ email: "", password: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = { email, password };
-    handleLogIn(formData);
+    handleLogIn(values);
   };
 
   return (
@@ -34,8 +26,9 @@ export default function LoginModal({
       handleCloseModal={handleCloseModal}
       handleSubmit={handleSubmit}
       handleSwitchModal={handleRegisterModal}
+      isLoading={isLoading}
     >
-      <label htmlFor="email" className="modal__label">
+      <label className="modal__label">
         Email
         <span className="modal__error"> (This is not an Email.)</span>
         <input
@@ -43,11 +36,12 @@ export default function LoginModal({
           className="modal__input"
           id="loginEmail"
           placeholder="Email"
-          value={email}
-          onChange={handleEmailChange}
+          value={values.email}
+          onChange={handleChange}
+          name="email"
         />
       </label>
-      <label htmlFor="Password" className="modal__label">
+      <label className="modal__label">
         Password
         <span className="modal__error"> (Password incorrect.)</span>
         <input
@@ -55,8 +49,9 @@ export default function LoginModal({
           className="modal__input"
           id="loginPassword"
           placeholder="Password"
-          value={password}
-          onChange={handlePasswordChange}
+          value={values.password}
+          onChange={handleChange}
+          name="password"
         />
       </label>
     </ModalWithForm>

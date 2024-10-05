@@ -18,16 +18,22 @@ function ItemCard({ item, handleCardClick, handleCardLike }) {
     console.log("handleLike:", item._id, isLiked);
     handleCardLike({ id: item._id, isLiked });
   };
-
+  const cardNameClass = `card__name ${
+    isLoggedIn ? "card__name_logIn" : "card__name_not_logIn"
+  }`;
   return (
     <li className="card">
-      <h2 className="card__name">{item.name}</h2>
-      <img
-        src={isLiked ? liked : like}
-        alt={isLiked ? "liked" : "like"}
-        className="card__like"
-        onClick={handleLike}
-      />
+      <h2 className={cardNameClass}>{item.name}</h2>
+      {isLoggedIn ? (
+        <img
+          src={isLiked ? liked : like}
+          alt={isLiked ? "liked" : "like"}
+          className="card__like"
+          onClick={handleLike}
+        />
+      ) : (
+        <></>
+      )}
 
       <img
         onClick={openPreview}

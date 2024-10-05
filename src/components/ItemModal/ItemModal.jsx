@@ -13,9 +13,9 @@ function ItemModal({
   openDeleteModal,
   handleDeleteClose,
   handleDeleteItem,
+  isLoading,
 }) {
-  const { isLoggedIn, setIsLoggedIn, currentUser } =
-    useContext(CurrentUserContext);
+  const { isLoggedIn, currentUser } = useContext(CurrentUserContext);
   const isOwn = selectedCard.owner === currentUser?._id;
 
   const itemDeleteButtonClassName = `modal__footer_delete ${
