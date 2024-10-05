@@ -15,8 +15,10 @@ export default function EditProfileModal({
 
   useEffect(() => {
     if (isOpened) {
-      setName(currentUser?.name || "");
-      setAvatar(currentUser?.avatar || "");
+      setValues({
+        name: currentUser.name || "",
+        avatar: currentUser.avatar || "",
+      });
     }
   }, [isOpened, currentUser, setValues]);
 

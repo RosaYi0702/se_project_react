@@ -36,6 +36,7 @@ export default function AddItemModal({
           placeholder="Name"
           value={values.name}
           onChange={handleChange}
+          name="name"
         />
       </label>
       <label className="modal__label">
@@ -48,6 +49,7 @@ export default function AddItemModal({
           placeholder="Image URL"
           value={values.imageUrl}
           onChange={handleChange}
+          name="imageUrl"
         />
       </label>
       <fieldset className="modal__radio-buttons">
