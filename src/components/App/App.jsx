@@ -98,7 +98,7 @@ function App() {
     postItem(newClothingItem, token)
       .then((data) => {
         console.log("new clothing data", data);
-        setClothingItems((prevItems) => [...prevItems, data.item]);
+        setClothingItems((prevItems) => [data.item, ...prevItems]);
       })
       .then(() => {
         handleCloseModal();
