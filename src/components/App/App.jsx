@@ -97,7 +97,8 @@ function App() {
 
     postItem(newClothingItem, token)
       .then((data) => {
-        setClothingItems(data.items);
+        console.log("new clothing data", data);
+        setClothingItems((prevItems) => [...prevItems, data.item]);
       })
       .then(() => {
         handleCloseModal();
@@ -234,7 +235,7 @@ function App() {
 
     getItems(token)
       .then((data) => {
-        setClothingItems(data.items);
+        setClothingItems(data.items || []);
       })
       .catch((err) => {
         console.error("Failed to fetch items:", err);

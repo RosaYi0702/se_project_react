@@ -24,7 +24,7 @@ function Main({
           {currentTemperatureUnit} / You may want to wear:
         </p>
         <ul className="cards__list">
-          {clothingItems
+          {(clothingItems || [])
             .filter((item) => {
               return item.weather === weatherData?.type;
             })

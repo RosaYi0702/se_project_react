@@ -13,7 +13,7 @@ export default function ClothesSection({
   const { isLoggedIn, setIsLoggedIn, currentUser } =
     useContext(CurrentUserContext);
 
-  const userClothingItems = clothingItems.filter(
+  const userClothingItems = (clothingItems || []).filter(
     (item) => item.owner === currentUser._id
   );
 

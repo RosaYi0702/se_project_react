@@ -9,7 +9,10 @@ export default function AddItemModal({
   selectedOption,
   isLoading,
 }) {
-  const { values, handleChange } = useForm({ name: "", imageUrl: "" });
+  const { values, handleChange, setValues } = useForm({
+    name: "",
+    imageUrl: "",
+  });
 
   return (
     <ModalWithForm
@@ -23,6 +26,7 @@ export default function AddItemModal({
           imageUrl: values.imageUrl,
           weatherType: selectedOption,
         });
+        setValues({ name: "", imageUrl: "" });
       }}
       handleOptionChange={handleOptionChange}
       isLoading={isLoading}
