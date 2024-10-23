@@ -1,6 +1,4 @@
 import "./Profile.css";
-import { useContext } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import SideBar from "../SideBar/SideBar";
 

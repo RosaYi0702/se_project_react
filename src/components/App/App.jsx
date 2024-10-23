@@ -1,6 +1,6 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -94,7 +94,7 @@ function App() {
       imageUrl: formData.imageUrl,
       weather: selectedOption,
     };
-
+    setIsLoading(true);
     postItem(newClothingItem, token)
       .then((data) => {
         console.log("new clothing data", data);
@@ -103,7 +103,10 @@ function App() {
       .then(() => {
         handleCloseModal();
       })
-      .catch((err) => console.error("Failed to post item:", err));
+      .catch((err) => console.error("Failed to post item:", err))
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const handleDeleteItem = (item) => {
@@ -161,7 +164,7 @@ function App() {
     if (!formData.email || !formData.password) {
       return;
     }
-
+    setIsLoading(true);
     signin(formData)
       .then((data) => {
         console.log(data);
@@ -181,6 +184,9 @@ function App() {
       .catch((err) => {
         console.error("Log in fail:", err);
         setIsLoggedIn(false);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 

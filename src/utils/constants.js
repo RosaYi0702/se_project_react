@@ -1,3 +1,5 @@
+import process from "process";
+
 export const weatherOptions = [
   {
     day: true,

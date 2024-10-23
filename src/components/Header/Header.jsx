@@ -15,8 +15,7 @@ function Header({
   toggleMobileMenu,
   isMobileMenuOpened,
 }) {
-  const { isLoggedIn, setIsLoggedIn, currentUser } =
-    useContext(CurrentUserContext);
+  const { isLoggedIn, currentUser } = useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",

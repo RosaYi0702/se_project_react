@@ -1,22 +1,19 @@
 import "./SideBar.css";
-import avatar from "../../assets/avatar.png";
-import { useState, useContext } from "react";
+
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { removeToken } from "../../utils/token";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 export default function SideBar({
-  userName,
-  userAvatar,
   handleUpdateProfile,
   handleUpdateProfileModal,
   handleCloseModal,
   activeModal,
 }) {
   const navigate = useNavigate();
-  const { isLoggedIn, setIsLoggedIn, currentUser } =
-    useContext(CurrentUserContext);
+  const { setIsLoggedIn, currentUser } = useContext(CurrentUserContext);
 
   function signOut() {
     removeToken();

@@ -1,7 +1,6 @@
 import "./ItemModal.css";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import React from "react";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import white_close from "../../assets/white_close.png";
 
@@ -13,7 +12,6 @@ function ItemModal({
   openDeleteModal,
   handleDeleteClose,
   handleDeleteItem,
-  isLoading,
 }) {
   const { isLoggedIn, currentUser } = useContext(CurrentUserContext);
   const isOwn = selectedCard.owner === currentUser?._id;
